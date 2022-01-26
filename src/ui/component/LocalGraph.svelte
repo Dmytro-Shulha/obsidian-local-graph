@@ -49,69 +49,35 @@ import { link } from 'fs';
         color: orangered
     }
 
-    body {
-        overflow: hidden;
-    }
-
     .board {
         height: 30%;
         overflow: hidden;
     }
 
     .board p {
-        /* width: 100%;
-        display: inline-block;
-        vertical-align: middle;
-        margin: auto;
-        line-height: 1.5; */
-        
-        /* align-items: center;
-        justify-content: center;
-        vertical-align: middle;
-        display: inline-block; */
-
         border: 1px solid red;
-
     }
 
-    /* .left, .middle, .right {
-        float:left;
-        width: 33%;
-        padding: 0 1em 0 1em;
-    } */
-
     .left p, .middle p, .right p  {
-        align: center;
+        align-content: center;
         align-items: center;
         justify-content: center;
         vertical-align: middle;
         display: grid;
         margin: auto;
         width: 100%;
-
-        /* max-height: 1.5em; */
     }
 
-    /* .left, .middle, .right  {
-        line-height: 3em;
-        height: 200px;
-        border: 3px solid green;
-        text-align: center;
-    } */
-
     .left, .middle, .right  {
-        /* min-height: 3em; */
-        /* height: 200px; */
         height: 100%;
         width: 33%;
-        float:left;
+        padding: 0 10%;
+        float: left;
         border: 3px solid green;
-        /* text-align: center; */
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
         display: grid;
-
     }
 
     .left::-webkit-scrollbar,
