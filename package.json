@@ -4,20 +4,31 @@
 	"description": "This plugin is a custom implementation of Local Graph View for Obsidian.md.",
 	"main": "main.js",
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"dev": "rollup --config rollup.config.js -w",
+		"build": "rollup --config rollup.config.js",
+		"dev_es": "node esbuild.config.mjs",
+		"build_es": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^15.1.0",
+    	"@rollup/plugin-json": "^4.1.0",
+	    "@rollup/plugin-node-resolve": "11.0.0",
+	    "@rollup/plugin-typescript": "^6.0.0",
+	    "@tsconfig/svelte": "1.0.10",
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "^5.2.0",
 		"@typescript-eslint/parser": "^5.2.0",
 		"builtin-modules": "^3.2.0",
 		"esbuild": "0.13.12",
 		"obsidian": "^0.12.17",
+		"rollup": "^2.51.2",
+	    "rollup-plugin-svelte": "7.0.0",
+		"svelte": "^3.38.2",
+	    "svelte-preprocess": "4.6.1",
 		"tslib": "2.3.1",
 		"typescript": "4.4.4"
 	}
