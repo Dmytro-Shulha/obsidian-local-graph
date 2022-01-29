@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf } from "obsidian";
+import { FileView, ItemView, WorkspaceLeaf } from "obsidian";
 import { TRIGGER_CUSTOM_LOCAL_GRAPH_OPEN, VIEW_TYPE_CUSTOM_LOCAL_GRAPH } from "../../utils/constants";
 
 import LocalGraph from '../component/LocalGraph.svelte'
@@ -15,11 +15,11 @@ export default class LocalGraphView extends ItemView {
     }
 
     getDisplayText(): string {
-        return "Geographic Map";
+        return "Custom Local Graph";
     }
 
     getIcon(): string {
-        return "calendar-with-checkmark";
+        return "dot-network";
     }
 
     onClose(): Promise<void> {
@@ -30,10 +30,20 @@ export default class LocalGraphView extends ItemView {
     }
 
     async onOpen(): Promise<void> {    
+        const {
+            vault,
+            workspace: {activeLeaf}
+        } = this.app;
+        
+        const activeFile = activeLeaf 
+            ? (activeLeaf.view as FileView).file?.path
+            : null;
+
         this.map = new LocalGraph({
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           target: (this as any).contentEl,
           props: {
+              activeFile
           },
         });
     }

@@ -1,25 +1,28 @@
 
 <script lang="ts">
-import { link } from 'fs';
+    import { fade, fly } from 'svelte/transition';
+    import * as obs from 'obsidian';
+    
+    // obs.
 
-	import { fade, fly } from 'svelte/transition';
-	let visible = true;
+    export let activeFile : string = null;
 
     let currentNote : any = {
         name: "Note1",
         links: ["1","2","3"],
         backlinks: ["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
     };
-    
 
 </script>
 
 <h1> Local Graph Component</h1>
+<h2>{activeFile}</h2>
 
-<label>
-	<input type="checkbox" bind:checked={visible}>
-	visible
-</label>
+<div class=header>
+    <h2>Backlinks</h2>
+    <div/>
+    <h2>Links</h2>
+</div>
 
 <div class="board">
     <div class="left">
@@ -38,16 +41,23 @@ import { link } from 'fs';
 </div>
 
 
-<!-- {#if visible}
-	<p transition:fade>
-		Flies in, fades out
-	</p>
-{/if} -->
-
 <style>
     h1 {
         color: orangered
     }
+
+    .header {
+        display: flex;
+        align-items: center;
+    }
+
+    .header h2, .header div {
+        width: 33%;
+        border: 1px solid orangered;
+        justify-content: center;
+        display:grid;
+    }
+
 
     .board {
         height: 30%;
@@ -59,10 +69,7 @@ import { link } from 'fs';
     }
 
     .left p, .middle p, .right p  {
-        align-content: center;
-        align-items: center;
         justify-content: center;
-        vertical-align: middle;
         display: grid;
         margin: auto;
         width: 100%;

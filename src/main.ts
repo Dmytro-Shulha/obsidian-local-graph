@@ -1,6 +1,6 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
 
-import LocalGraphView from './ui/view/localGraph';
+import LocalGraphView from './ui/view/localGraphView';
 import { VIEW_TYPE_CUSTOM_LOCAL_GRAPH } from './utils/constants';
 
 // Remember to rename these classes and interfaces!
@@ -88,9 +88,14 @@ export default class LocalGraphPlugin extends Plugin {
 		if (this.app.workspace.getLeavesOfType(VIEW_TYPE_CUSTOM_LOCAL_GRAPH).length) {
 			return;
 		  }
-		  this.app.workspace.getLeaf(false).setViewState({
+		  let leaf = this.app.workspace.getRightLeaf(false);
+		  leaf.setViewState({
 			type: VIEW_TYPE_CUSTOM_LOCAL_GRAPH,
+			active: true,
 		  });
+		//   this.app.workspace.setActiveLeaf(leaf, null, true);
+		  this.app.workspace.revealLeaf(leaf);
+		  console.log(this.app.workspace)
 	}
 
 	async loadSettings() {
